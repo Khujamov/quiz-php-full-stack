@@ -1,0 +1,59 @@
+<mat-card>
+  <mat-card-title>
+    <span *ngIf="question.id">Edit Current Question</span>
+    <span *ngIf="!question.id">Add new Question</span>
+  </mat-card-title>
+  <mat-card-content>
+    <form>
+      <mat-form-field class="fullWidth">
+        <input
+          [(ngModel)]="question.text"
+          name="question"
+          matInput
+          placeholder="Question">
+      </mat-form-field>
+      <mat-form-field class="fullWidth">
+        <input
+          [(ngModel)]="question.correctAnswer"
+          name="correctAnswer"
+          matInput
+          placeholder="Correct Answer">
+      </mat-form-field>
+      <mat-form-field class="fullWidth">
+        <input
+          [(ngModel)]="question.wrongAnswer1"
+          name="wrongAnswer1"
+          matInput
+          placeholder="Wrong Answer 1">
+      </mat-form-field>
+      <mat-form-field class="fullWidth">
+        <input
+          [(ngModel)]="question.wrongAnswer2"
+          name="wrongAnswer2"
+          matInput
+          placeholder="Wrong Answer 2">
+      </mat-form-field>
+      <mat-form-field class="fullWidth">
+        <input
+          [(ngModel)]="question.wrongAnswer3"
+          name="wrongAnswer3"
+          matInput
+          placeholder="Wrong Answer 3">
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      (click)="onSubmit()"
+      mat-button>
+      Submit
+    </button>
+    <button
+      (click)="resetQuestion()"
+      mat-button>
+      New Question
+    </button>
+  </mat-card-actions>
+</mat-card>
+<app-questions></app-questions>
+

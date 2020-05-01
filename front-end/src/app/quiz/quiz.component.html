@@ -1,0 +1,36 @@
+<mat-card>
+  <mat-card-title>
+    <span *ngIf="quiz.id">Edit Current Quiz</span>
+    <span *ngIf="!quiz.id">Add new Quiz</span>
+  </mat-card-title>
+  <mat-card-content>
+    <form>
+      <mat-form-field class="fullWidth">
+        <input
+          [(ngModel)]="quiz.title"
+          name="quiz"
+          matInput
+          placeholder="Title">
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      (click)="onSubmit()"
+      mat-button>
+      Submit
+    </button>
+    <button
+      (click)="resetQuiz()"
+      mat-button>
+      New Quiz
+    </button>
+    <button
+      [disabled]="!quiz.id"
+      (click)="navigateToQuestions()"
+      mat-button>
+      Navigate to Questions
+    </button>
+  </mat-card-actions>
+</mat-card>
+
