@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddsQuestionIdToQuestionsTable extends Migration
+class AddUserIdToQuizzes extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,12 @@ class AddsQuestionIdToQuestionsTable extends Migration
     public function up()
     {
         Schema::enableForeignKeyConstraints();
-        Schema::table('questions', function (Blueprint $table) {
-            $table->bigInteger('quizId')->unsigned();
+        Schema::table('quizzes', function (Blueprint $table) {
+            $table->bigInteger('userId')->unsigned();
         });
-        Schema::create('wrong_answers', function (Blueprint $table) {
-            $table->foreign('quiz_id')
-                    ->references('id')->on('quizzes')
-                    ->onDelete('cascade');
+        Schema::table('quizzes', function (Blueprint $table) {
+            $table->foreign('userId')
+                    ->references('id')->on('users');
         });
     }
 
@@ -31,7 +30,7 @@ class AddsQuestionIdToQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('questions', function (Blueprint $table) {
+        Schema::table('quizzes', function (Blueprint $table) {
             //
         });
     }

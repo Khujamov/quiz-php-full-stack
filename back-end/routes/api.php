@@ -18,6 +18,16 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+Route::post('/register', 'AuthController@register');
+Route::post('/login', 'AuthController@login');
+Route::get('quizzes/all', 'QuizController@all');
+
+Route::group([
+    'middleware' => ['jwt.verify']
+], function () {
+
+Route::post('/logout', 'AuthController@logout');
+
 Route::get('questions', 'QuestionController@index');
 Route::get('questions/{id}', 'QuestionController@show');
 Route::post('questions', 'QuestionController@store');
@@ -29,3 +39,7 @@ Route::get('quizzes/{id}', 'QuizController@show');
 Route::post('quizzes', 'QuizController@store');
 Route::put('quizzes/{id}', 'QuizController@update');
 Route::delete('quizzes/{id}', 'QuizController@delete');
+
+});
+
+
